@@ -1,53 +1,146 @@
 #include <stdio.h>
-#include "Trie_RWay.c"
+#include <stdlib.h>
+#include <string.h>
+#include "Desafio1/trie.h"
+#include "Desafio2/hashtable.h"
 
-int main(int argc, char *argv[]) {
-	NoTrie* raiz = criarNo();
-	char palavra[256];
-	int opcao;
-	
-	do{
-		printf("\n------------MENU------------\n");
-		printf("1. Inserir palavra.\n");
-		printf("2. Remover palavra.\n");
-		printf("3. Buscar palavra.\n");
-		printf("4. Imprimir palavras em ordem alfabética.\n");
-		printf("5. Sair\n");
-		printf("Escolha uma opcao: ");
-		scanf("%d", &opcao);
-		switch(opcao){
-			case 1: 
-				printf("Digite a palavra a inserir: ");
-				scanf("%s", palavra);
-				inserir(raiz, palavra);
-				printf("Palavra inserida com sucesso.\n");
-				break;
-			case 2: 
-				printf("Digite a palavra a remover: ");
-				scanf("%s", palavra);
-				remover(raiz, palavra);
-				printf("Palavra removida com sucesso.\n");
-				break;
-			case 3: 
-				printf("Digite a palavra a buscar: ");
-				scanf("%s", palavra);
-				if(buscar(raiz, palavra)){
-					printf("Palavra encontrada.\n");
-				}
-				else{
-					printf("Palavra não encontrada.\n");
-				}
-			case 4: 
-				printf("Palavras na TRIE em ordem alfabética: \n");
-				imprimirEmOrdem(raiz);
-				break;
-			case 5:
-				printf("Saindo...\n");
-			default:
-				printf("Opcao invalida.\n");
-		}
-	}
-	while(opcao != 5);
-	
-	return 0;
+#define MAX_WORD 100
+
+void menuTrie() {
+    NoTrie* raiz = criarNo();
+    int op;
+    char palavra[MAX_WORD];
+
+    do {
+        printf("\n====== MENU TRIE R-WAY ======\n");
+        printf("1. Inserir palavra\n");
+        printf("2. Remover palavra\n");
+        printf("3. Imprimir em ordem alfabetica\n");
+        printf("4. Pesquisar palavra\n");
+        printf("5. Voltar ao menu principal\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &op);
+        getchar(); // Limpa o buffer
+
+        switch (op) {
+            case 1:
+                printf("Digite a palavra para inserir: ");
+                fgets(palavra, MAX_WORD, stdin);
+                palavra[strcspn(palavra, "\n")] = 0;
+                inserir(raiz, palavra);
+                printf("Palavra %s inserida\n", palavra);
+                break;
+            case 2:
+                printf("Digite a palavra para remover: ");
+                fgets(palavra, MAX_WORD, stdin);
+                palavra[strcspn(palavra, "\n")] = 0;
+                remover(raiz, palavra);
+                printf("Palavra %s removida se existia\n", palavra);
+                break;
+            case 3:
+                printf("Palavras na Trie em ordem alfabetica\n");
+                imprimirEmOrdem(raiz);
+                break;
+            case 4:
+                printf("Digite a palavra para pesquisar: ");
+                fgets(palavra, MAX_WORD, stdin);
+                palavra[strcspn(palavra, "\n")] = 0;
+                if (buscar(raiz, palavra))
+                    printf("Palavra %s encontrada\n", palavra);
+                else
+                    printf("Palavra %s nao encontrada\n", palavra);
+                break;
+            case 5:
+                printf("Voltando ao menu principal\n");
+                break;
+            default:
+                printf("Opcao invalida\n");
+        }
+    } while (op != 5);
+
+    // Liberacao de memoria da Trie pode ser implementada se desejar
+}
+
+void menuHashTable() {
+    int size, op, key;
+    printf("\nDigite o tamanho da Hash Table: ");
+    scanf("%d", &size);
+    HashTable* ht = createHashTable(size);
+
+    do {
+        printf("\n====== MENU HASH TABLE ======\n");
+        printf("1. Inserir chave\n");
+        printf("2. Remover chave\n");
+        printf("3. Imprimir chaves\n");
+        printf("4. Pesquisar chave\n");
+        printf("5. Voltar ao menu principal\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &op);
+
+        switch (op) {
+            case 1:
+                printf("Digite a chave para inserir: ");
+                scanf("%d", &key);
+                insertKey(ht, key);
+                printf("Chave %d inserida\n", key);
+                break;
+            case 2:
+                printf("Digite a chave para remover: ");
+                scanf("%d", &key);
+                if (removeKey(ht, key))
+                    printf("Chave %d removida\n", key);
+                else
+                    printf("Chave %d nao encontrada\n", key);
+                break;
+            case 3:
+                printf("Chaves na Hash Table\n");
+                printKeys(ht);
+                break;
+            case 4:
+                printf("Digite a chave para pesquisar: ");
+                scanf("%d", &key);
+                if (searchKey(ht, key))
+                    printf("Chave %d encontrada\n", key);
+                else
+                    printf("Chave %d nao encontrada\n", key);
+                break;
+            case 5:
+                printf("Voltando ao menu principal\n");
+                break;
+            default:
+                printf("Opcao invalida\n");
+        }
+    } while (op != 5);
+
+    freeHashTable(ht);
+}
+
+int main() {
+    int op;
+    do {
+        printf("\n==============================\n");
+        printf("   Segunda Prova Parcial Menu   \n");
+        printf("==============================\n");
+        printf("1. Testar Trie R-Way\n");
+        printf("2. Testar Hash Table\n");
+        printf("3. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &op);
+
+        switch (op) {
+            case 1:
+                menuTrie();
+                break;
+            case 2:
+                menuHashTable();
+                break;
+            case 3:
+                printf("Obrigado por usar o programa\n");
+                break;
+            default:
+                printf("Opcao invalida\n");
+        }
+    } while (op != 3);
+
+    return 0;
 }

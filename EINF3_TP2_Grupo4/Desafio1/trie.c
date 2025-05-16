@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h> // para usar o tolower() e o toupper()
-#include "Trie_RWay.h"
+#include <ctype.h> // para usar tolower e toupper
+#include "trie.h"
 
-//Função para criar um novo nó na Trie
+// Funcao para criar um novo no na Trie
 NoTrie* criarNo(){
 	NoTrie* novoNo = (NoTrie*)malloc(sizeof(NoTrie));
 	novoNo->fimDaPalavra = false;
 	
-	//Inicializando todos os ponteiros no array filhos do novo nó como NULL. Inicialmente nenhum nó tem filho
+	// Inicializa todos os ponteiros no array filhos do novo no como NULL. Inicialmente nenhum no tem filho
 	int i;
 	for(i=0;i<ALFABETO_TAMANHO;i++){
 		novoNo->filhos[i] = NULL;
@@ -17,13 +17,13 @@ NoTrie* criarNo(){
 	return novoNo;
 }
 
-//Função para calcular o índice da letra
+// Funcao para calcular o indice da letra
 int calcularIndice(char letra){
-	letra = tolower(letra); //converte a letra recebida para minúscula
+	letra = tolower(letra); // converte a letra recebida para minuscula
 	return letra - 'a';
 }
 
-//Função para inserir uma palavra na TRIE
+// Funcao para inserir uma palavra na TRIE
 void inserir(NoTrie* raiz, char *palavra){
 	NoTrie* atual = raiz;
 	int comprimento = strlen(palavra);
@@ -40,7 +40,7 @@ void inserir(NoTrie* raiz, char *palavra){
 	
 }
 
-//Função para buscar uma palavra na TRIE
+// Funcao para buscar uma palavra na TRIE
 bool buscar(NoTrie* raiz, char *palavra){
 	NoTrie *atual = raiz;
 	int comprimento = strlen(palavra);
@@ -57,9 +57,9 @@ bool buscar(NoTrie* raiz, char *palavra){
 	return(atual != NULL && atual->fimDaPalavra);
 }
 
-//Função auxiliar para imprimir palavras em ordem alfabética
-//prefixo acumula os caracteres do caminho percorrido na Trie.
-//profundidade indica a posição onde o caractere deve ser adicionado no prefixo.
+// Funcao auxiliar para imprimir palavras em ordem alfabetica
+// prefixo acumula os caracteres do caminho percorrido na Trie
+// profundidade indica a posicao onde o caractere deve ser adicionado no prefixo
 void imprimirPalavras(NoTrie* no, char prefixo[], int profundidade){
 	if(no == NULL){
 		return;
@@ -78,13 +78,13 @@ void imprimirPalavras(NoTrie* no, char prefixo[], int profundidade){
 	}	
 }
 
-//Função para imprimir todas as palavras na trie na ordem correcta
+// Funcao para imprimir todas as palavras na trie na ordem correta
 void imprimirEmOrdem(NoTrie* raiz){
 	char prefixo[256];
 	imprimirPalavras(raiz, prefixo, 0);
 }
 
-//Função recursiva para remover uma palavra da TRIE
+// Funcao recursiva para remover uma palavra da TRIE
 bool removerPalavra(NoTrie* no, char *palavra, int profundidade){
 	if(no == NULL){
 		return false;
@@ -94,11 +94,11 @@ bool removerPalavra(NoTrie* no, char *palavra, int profundidade){
 			no->fimDaPalavra = false;
 			return true;
 		}
-		return false; //palavra não encontrada
+		return false; // palavra nao encontrada
 	}
 	int indice = calcularIndice(palavra[profundidade]);
 	if(removerPalavra(no->filhos[indice], palavra, profundidade + 1)){
-		//se o filho foi removido e não tem mais filhor
+		// se o filho foi removido e nao tem mais filhos
 		if(!no->fimDaPalavra && !temFilhos(no)){
 			free(no);
 			no = NULL;
@@ -107,7 +107,7 @@ bool removerPalavra(NoTrie* no, char *palavra, int profundidade){
 	}
 	return false;
 }
-//funcão auxiliar para verificar se um nó tem filhos
+// Funcao auxiliar para verificar se um no tem filhos
 bool temFilhos(NoTrie* no){
 	int i;
 	for(i=0; i<ALFABETO_TAMANHO;i++){
@@ -118,7 +118,7 @@ bool temFilhos(NoTrie* no){
 	return false;
 }
 
-//Função para remover uma palavra da TRIE
+// Funcao para remover uma palavra da TRIE
 void remover(NoTrie *raiz, char *palavra){
 	removerPalavra(raiz, palavra, 0);
 }
