@@ -1,14 +1,10 @@
 #include <stdbool.h>
-#include <stdbool.h> // para usar tipo booleano
-#include <ctype.h>   // para usar funcoes de manipulacao de caracteres
+#include <ctype.h>
 
 #define ALFABETO_TAMANHO 52
 
 // Estrutura para um no da trie R-Way
-typedef struct No{
-	struct NoTrie* filhos[ALFABETO_TAMANHO];
-	bool fimDaPalavra; // indica se este no marca o final de uma palavra
-}NoTrie;
+typedef struct noTrie NoTrie;
 
 // Prototipos das funcoes
 NoTrie* criarNo(); // cria novos nos na trie

@@ -2,20 +2,20 @@
 
 Este repositório contém a implementação de duas estruturas clássicas para operações eficientes de pesquisa:
 
-- **R-Way Trie**: Estrutura de árvore de prefixos com ordenação alfabética.
-- **Chained Hash Table**: Tabela de hash com resolução de colisões via encadeamento.
+- **Trie R-Way**: Estrutura de árvore de prefixos com ordenação alfabética.
+- **Hashtable Encadeiada**: Tabela de hash com resolução de colisões via encadeamento.
 
 ---
 
 ## 📌 Funcionalidades
 
-### 🔤 R-Way Trie
+### 🔤 Trie R-Way
 - Inserção de palavras
 - Remoção de palavras
 - Pesquisa por palavra
 - Impressão em ordem alfabética (lexicográfica)
 
-### 🔗 Chained Hash Table
+### 🔗 Hashtable Encadeiada
 - Inserção de chaves
 - Remoção de chaves
 - Pesquisa por chave

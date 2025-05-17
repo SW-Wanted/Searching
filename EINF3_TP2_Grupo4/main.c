@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Desafio1/trie.h"
+#include "Desafio1/trie_rway.h"
 #include "Desafio2/hashtable.h"
 
 #define MAX_WORD 100
@@ -65,7 +65,7 @@ void menuHashTable() {
     int size, op, key;
     printf("\nDigite o tamanho da Hash Table: ");
     scanf("%d", &size);
-    HashTable* ht = createHashTable(size);
+    HashTable* ht = criarHashTable(size);
 
     do {
         printf("\n====== MENU HASH TABLE ======\n");
@@ -81,25 +81,25 @@ void menuHashTable() {
             case 1:
                 printf("Digite a chave para inserir: ");
                 scanf("%d", &key);
-                insertKey(ht, key);
+                inserirChave(ht, key);
                 printf("Chave %d inserida\n", key);
                 break;
             case 2:
                 printf("Digite a chave para remover: ");
                 scanf("%d", &key);
-                if (removeKey(ht, key))
+                if (removerChave(ht, key))
                     printf("Chave %d removida\n", key);
                 else
                     printf("Chave %d nao encontrada\n", key);
                 break;
             case 3:
                 printf("Chaves na Hash Table\n");
-                printKeys(ht);
+                imprimirChaves(ht);
                 break;
             case 4:
                 printf("Digite a chave para pesquisar: ");
                 scanf("%d", &key);
-                if (searchKey(ht, key))
+                if (buscarChave(ht, key))
                     printf("Chave %d encontrada\n", key);
                 else
                     printf("Chave %d nao encontrada\n", key);
@@ -112,7 +112,7 @@ void menuHashTable() {
         }
     } while (op != 5);
 
-    freeHashTable(ht);
+    liberarHashTable(ht);
 }
 
 int main() {

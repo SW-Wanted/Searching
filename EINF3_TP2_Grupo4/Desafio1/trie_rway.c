@@ -1,12 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h> // para usar tolower e toupper
-#include "trie.h"
+#include <stdbool.h>
+#include <ctype.h>
+#include "trie_rway.h"
+
+struct noTrie{
+	struct noTrie* filhos[ALFABETO_TAMANHO];
+	bool fimDaPalavra;
+};
 
 // Funcao para criar um novo no na Trie
 NoTrie* criarNo(){
 	NoTrie* novoNo = (NoTrie*)malloc(sizeof(NoTrie));
+	if (novoNo == NULL) {
+		fprintf(stderr, "Erro ao alocar memoria para novo no da Trie.\n");
+		exit(EXIT_FAILURE);
+	}
 	novoNo->fimDaPalavra = false;
 	
 	// Inicializa todos os ponteiros no array filhos do novo no como NULL. Inicialmente nenhum no tem filho
@@ -122,4 +132,3 @@ bool temFilhos(NoTrie* no){
 void remover(NoTrie *raiz, char *palavra){
 	removerPalavra(raiz, palavra, 0);
 }
-

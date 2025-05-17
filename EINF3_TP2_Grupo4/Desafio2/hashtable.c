@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include "hashtable.h"
 
+// Estrutura para um no na cadeia
+struct no {
+    int chave;
+    struct no* proximo;
+};
+
+// Estrutura para a tabela hash
+struct hashTable {
+    int tamanho;    // Numero de baldes
+    No** tabela;    // Array de ponteiros para cadeias
+};
 // Cria uma nova tabela hash
 HashTable* criarHashTable(int tamanho) {
     HashTable* th = (HashTable*)malloc(sizeof(HashTable));
