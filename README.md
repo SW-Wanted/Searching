@@ -1,13 +1,15 @@
-# rway_trie-chained_hashtable
+# 🔍 Searching
 
-Este repositório contém a implementação de duas estruturas clássicas para operações eficientes de pesquisa:
+Este repositório contém a implementação de estruturas de dados de pesquisa:
 
-- **Trie R-Way**: Estrutura de árvore de prefixos com ordenação alfabética.
-- **Hashtable Encadeiada**: Tabela de hash com resolução de colisões via encadeamento.
+## 📦 Algoritmos
 
+- **Linear Search**
+- **Binary Search**
+- **[Binary Search Tree - AVL](https://github.com/SW-Wanted/Binary-Search-Tree-AVL)**
+- **[Trie R-Way](https://github.com/SW-Wanted/Trie-Rway)** : Estrutura de árvore de prefixos com ordenação alfabética.
+- **[Hash Table (Encadeada)](https://github.com/SW-Wanted/Tabela-Hash)** : Tabela de hash com resolução de colisões via encadeamento.
 ---
-
-## 📌 Funcionalidades
 
 ### 🔤 Trie R-Way
 - Inserção de palavras
@@ -15,7 +17,7 @@ Este repositório contém a implementação de duas estruturas clássicas para o
 - Pesquisa por palavra
 - Impressão em ordem alfabética (lexicográfica)
 
-### 🔗 Hashtable Encadeiada
+### 🔗 Hashtable
 - Inserção de chaves
 - Remoção de chaves
 - Pesquisa por chave
@@ -23,15 +25,12 @@ Este repositório contém a implementação de duas estruturas clássicas para o
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias
 - Linguagem: **C**
-- Editor: **Visual Studio Code**
-- Versionamento: **Git e GitHub**
-
 ---
 
 ## 💻 Como Executar
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/teu-usuario/rway_trie-chained_hashtable.git
+git clone https://github.com/SW-Wanted/Searching.git
