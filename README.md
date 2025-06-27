@@ -8,7 +8,7 @@ Este repositório contém a implementação de estruturas de dados de pesquisa:
 - **Binary Search**
 - **[Binary Search Tree - AVL](https://github.com/SW-Wanted/Binary-Search-Tree-AVL)**
 - **[Trie R-Way](https://github.com/SW-Wanted/Trie-Rway)** : Estrutura de árvore de prefixos com ordenação alfabética.
-- **[Hash Table (Encadeada)](https://github.com/SW-Wanted/Tabela-Hash)** : Tabela de hash com resolução de colisões via encadeamento.
+- **[Hash Table (Encadeada)](https://github.com/SW-Wanted/Hashtable)** : Tabela de hash com resolução de colisões via encadeamento.
 ---
 
 ### 🔤 Trie R-Way
